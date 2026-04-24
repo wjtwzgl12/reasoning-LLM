@@ -1,0 +1,65 @@
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+.ipynb_checkpoints/
+
+# ---------- Large artifacts (live on Google Drive, not git) ----------
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.zip
+*.7z
+*.tar
+*.tar.gz
+
+# jsonl 实验结果 / 大标注数据 — 走 Drive
+results/
+pvgap_experiment/results/
+p01_experiment/results/
+!Paper1_*.md
+
+# benchmark 大文件(> 1 MB 一律 Drive)
+data/benchmark/*.jsonl
+data/echem_rules/staging/*.jsonl
+
+# ---------- Recovery / scratch ----------
+_RECOVERED/
+_RECOVERED_ALL/
+_recovery_summary.tsv
+_strip_reminders.py
+_repack_zip.py
+_verify_edits.py
+_set_fullrun.py
+_revert.py
+_patch*.py
+inventory_garbled.py
+merge_db_recovery.py
+recover_extract*.py
+recover_from_cursor_db.py
+recover_junge1218_from_cursor.py
+recover_scan.py
+recover_template_baseline.py
+scan_imports.py
+sbi-logs/
+
+# ---------- OS / editor ----------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# ---------- Claude / Obsidian ----------
+.claude/
+.obsidian/
+
+# ---------- Colab specific ----------
+sample_data/
+
+# ---------- 明确保留 ----------
+!.gitkeep
+!.gitignore

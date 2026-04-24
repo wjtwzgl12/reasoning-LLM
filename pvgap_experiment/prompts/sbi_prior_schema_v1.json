@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SBI prior emission v1",
+  "type": "object",
+  "required": ["parameters"],
+  "additionalProperties": false,
+  "properties": {
+    "parameters": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["name", "dist", "support"],
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "enum": [
+              "Negative electrode thickness [m]",
+              "Positive electrode thickness [m]",
+              "Negative particle radius [m]",
+              "Positive particle radius [m]",
+              "Negative electrode diffusivity [m2.s-1]",
+              "Positive electrode diffusivity [m2.s-1]"
+            ]
+          },
+          "dist": {"enum": ["lognormal", "uniform"]},
+          "loc": {"type": "number"},
+          "scale": {"type": "number", "exclusiveMinimum": 0},
+          "low": {"type": "number"},
+          "high": {"type": "number"},
+          "support": {
+            "type": "array",
+            "items": {"type": "number"},
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "allOf": [
+          {
+            "if": {"properties": {"dist": {"const": "lognormal"}}},
+            "then": {"required": ["loc", "scale"]}
+          },
+          {
+            "if": {"properties": {"dist": {"const": "uniform"}}},
+            "then": {"required": ["low", "high"]}
+          }
+        ]
+      }
+    }
+  }
+}
